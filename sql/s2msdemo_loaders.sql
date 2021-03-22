@@ -3,12 +3,12 @@ use msdemo;
 -- LOAD FILE for city_state & states - FROM COMMAND LINE CLIENT with --local-infile option
 -- ***************************************************************************************
 
-load data local infile '/home/ec2-user/projects/msdemo/sql/data/uscities_clean.csv'
+load data local infile '/home/ec2-user/projects/s2msdemo/sql/data/uscities_clean.csv'
 into table city_state
 fields terminated by ','
 ignore 1 lines;
 
-load data local infile '/home/ec2-user/projects/msdemo/sql/data/states.csv'
+load data local infile '/home/ec2-user/projects/s2msdemo/sql/data/states.csv'
 into table states
 fields terminated by ',';
 
