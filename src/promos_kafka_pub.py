@@ -15,7 +15,7 @@ TOPIC = "PromoIn"
 KAFKA_SVR = "127.0.0.1:9092"
 
 SLEEP = 30
-CSV_FILE = "/home/ec2-user/projects/msdemo/sql/data/promo_events.csv"
+CSV_FILE = "/home/ec2-user/projects/s2msdemo/sql/data/promo_events.csv"
 
 #get arguments
 parser = argparse.ArgumentParser()
