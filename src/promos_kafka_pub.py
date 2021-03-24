@@ -30,7 +30,7 @@ argstring = " kafka_svr:  "+args.kafka_svr+NL+" topic:      "+args.topic+NL+ \
             " file:       "+args.file+NL+     " sleep_int:  "+str(args.sleep_interval)
 print(argstring)
 
-producer = KafkaProducer(bootstrap_servers=KAFKA_SVR)
+producer = KafkaProducer(bootstrap_servers=args.kafka_svr)
 
 
 def publish_promos_to_kafka( ):

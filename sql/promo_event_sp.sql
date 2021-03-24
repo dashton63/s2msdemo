@@ -75,7 +75,7 @@ DECLARE
 SELECT JSON_AGG(temp.*)
 FROM temp
 into KAFKA
-'127.0.0.1/PromoOut'";
+'3.236.47.229:9092/PromoOut'";
 
     currentQuery TEXT;
     pred_string TEXT;

@@ -23,8 +23,8 @@ receiver    = 'msdemo@localhost'
 #get arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--smtp_host",default=SMTP_HOST,type=str,help="email host (ex: localhost)",required=False)
-parser.add_argument("--kafka_svr",default=KAFKA_HOST_PORT,type=str,help="Kafka host:port (ex: localhost:9092)",required=False)
-parser.add_argument("-t","--topic",default=TOPIC,type=str,help="Kafka Cunsumer Topic (ex: "+TOPIC+")",required=False)
+parser.add_argument("-k","--kafka_svr",default=KAFKA_HOST_PORT,type=str,help="Kafka host:port (ex: localhost:9092)",required=False)
+parser.add_argument("-t","--topic",default=TOPIC,type=str,help="Kafka Consumer Topic (ex: "+TOPIC+")",required=False)
 parser.add_argument("-s","--sender",default=sender,type=str,help="email sender (ex: "+sender+")",required=False)
 parser.add_argument("-r","--receiver",default=receiver,type=str,help="email receiver (ex: "+receiver+")",required=False)
 args = parser.parse_args()
@@ -50,9 +50,9 @@ Event Promotion Candidates within {EVENT_MILES} miles.
 
 """
 
-consumer = KafkaConsumer( TOPIC ,bootstrap_servers=KAFKA_HOST_PORT)
+consumer = KafkaConsumer( TOPIC ,bootstrap_servers=args.kafka_svr)
 
-print( "Connected to KAFKA on:" , TOPIC , " at " , KAFKA_HOST_PORT , "...")
+print( "Connected to KAFKA on:" , TOPIC , " at " , args.kafka_svr , "...")
 
 headers1 = ["State" , "City" , "Miles From" , "Promo"]
 headers2 = ["" , "" , "Event" , "Candidates"]
