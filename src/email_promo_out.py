@@ -50,9 +50,9 @@ Event Promotion Candidates within {EVENT_MILES} miles.
 
 """
 
-consumer = KafkaConsumer( TOPIC ,bootstrap_servers=args.kafka_svr)
+consumer = KafkaConsumer( args.topic ,bootstrap_servers=args.kafka_svr)
 
-print( "Connected to KAFKA on:" , TOPIC , " at " , args.kafka_svr , "...")
+print( "Connected to KAFKA on:" , args.topic , " at " , args.kafka_svr , "...")
 
 headers1 = ["State" , "City" , "Miles From" , "Promo"]
 headers2 = ["" , "" , "Event" , "Candidates"]
@@ -94,7 +94,7 @@ for message in consumer:
     print(emsg)
 
     try:
-        smtpObj = smtplib.SMTP(SMTP_HOST)
+        smtpObj = smtplib.SMTP(args.smtp_host)
         smtpObj.sendmail(sender, receivers, emsg)         
         print("Successfully sent email")
     except smtplib.SMTPException:

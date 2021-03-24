@@ -31,7 +31,7 @@ argstring = " kafka_svr:  "+args.kafka_svr+NL+" topic:      "+args.topic+NL+ \
 print(argstring)
 
 producer = KafkaProducer(bootstrap_servers=args.kafka_svr)
-
+print( "Connected to KAFKA on:" , args.topic , " at " , args.kafka_svr , "...")
 
 def publish_promos_to_kafka( ):
 
@@ -50,7 +50,7 @@ def publish_promos_to_kafka( ):
         msg = bytes( "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" % l_vals , "utf-8" )
         producer.send( args.topic, key=l_key, value=msg )
         print("Published to Topic: " , args.topic , ", Msg: ",msg)
-        if SLEEP != 0:
+        if args.sleep_interval != 0:
             time.sleep(args.sleep_interval)
 
 if __name__ == '__main__':
