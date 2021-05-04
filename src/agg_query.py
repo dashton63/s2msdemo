@@ -27,6 +27,26 @@ from {table}
 where state = '{s}' 
 group by state"""
 
+DEFAULT_QRY = """select t1.event_code, t1.event_date, t1.event_desc, t1.state, t1.city, t1.miles_from_event, count(1) as promo_candidates
+    from {table} p
+    inner join 
+    (
+        select pe.event_code, pe.event_date, pe.event_desc, c.city, c.state, c.zip, 
+                round(geography_distance(c.location,c2.location)/1600) as miles_from_event
+        from city_state c, city_state c2,
+        (select * from promo_event where event_code='E10003' limit 1) pe
+        where c2.zip = pe.event_zip
+        and geography_within_distance(c.location,c2.location, 300000)
+        order by state, city, zip
+    ) t1
+    on p.zip=t1.zip
+    and p.city=t1.city 
+    and p.state=t1.state 
+    where p.likes_sports = 1 
+    group by t1.event_code, t1.event_date, t1.event_desc, t1.state, t1.city, t1.miles_from_event
+    order by t1.miles_from_event"""
+
+
 #get arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-a","--aggs",default=DEFAULT_AGGS,type=str,help="comma separated host:port list (ex: host1:3306,host2:3306)",required=False)
@@ -36,7 +56,7 @@ parser.add_argument("-d","--database",default='msdemo',type=str,help="database n
 parser.add_argument("-t","--table",default='person',type=str,help="table to substitute [table] in QRY (ex: person or person_rs)",required=False)
 parser.add_argument("-q","--query",default=DEFAULT_QRY,type=str,help="query string (ex: select count(1) from {table} where state={s})",required=False)
 parser.add_argument("-i","--iterations",default=2000,type=int,help="query iterations in run (ex: 2000)",required=False)
-parser.add_argument("--threads",default="1,10,30",type=str,help="comma separated list of threads to run (ex: 1,10,30)",required=False)
+parser.add_argument("--threads",default="10",type=str,help="comma separated list of threads to run (ex: 1,10,30)",required=False)
 args = parser.parse_args()
 print()
 print("Runtime Arguments:")
@@ -53,7 +73,6 @@ ID_COUNT = 1000
 
 # Query & QueryDesc   
 QRY = args.query.replace("{table}" , args.table).replace("{s}","%s")
-ID_QRY = "select personid from {table} order by personid limit {count}".replace("{table}" , args.table).replace("{count}",str(ID_COUNT))
 
 PAUSE_SECONDS = 3
 PROGRESS_COUNT = 1000
@@ -86,7 +105,8 @@ def query_process( pheader, pworkers, pworker, qry_template, tqueue ):
 
     t_start = time.time()
     for qindex in range(args.iterations):
-        qry_string = qry_template % ( STATE[random.randint(0,len(STATE)-1)] )
+        #qry_string = qry_template % ( STATE[random.randint(0,len(STATE)-1)] )
+        qry_string = qry_template
         conn.execute(qry_string)
         if DEBUG:
             if qindex % PROGRESS_COUNT == 0:
