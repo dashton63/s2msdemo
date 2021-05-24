@@ -59,3 +59,13 @@ Python demonstration scripts
 > ~/utils directory
 
 Including python script for generating randonized person test data-sets of varying sizes and number of data-files
+
+## CSharp Demo Programs
+
+> ~/csharp
+
+C# equivalents of the Python demo programs to demonstrate multi-threaded batch inserts to SingleStore from .NET / C#
+Uses MySQL .Net connector, and includes:
+ - S2dbPersonInsert - inserts from csv files with separate thread per csv file
+ - S2dbPersonQuery - multi-threaded query benchmark program
+
