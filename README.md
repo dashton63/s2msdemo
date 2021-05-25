@@ -69,3 +69,6 @@ Uses MySQL .Net connector, and includes:
  - S2dbPersonInsert - inserts from csv files with separate thread per csv file
  - S2dbPersonQuery - multi-threaded query benchmark program
 
+ Note that the C# demo programs don't take command-line arguments at this time
+ - so you'll need to modify and recompile to use different parameters for your specific test
+ - modifying to use externally provided parameters is on the to-do list 
