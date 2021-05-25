@@ -64,7 +64,7 @@ Including python script for generating randonized person test data-sets of varyi
 
 > ~/csharp
 
-C# equivalents of the Python demo programs to demonstrate multi-threaded batch inserts to SingleStore from .NET / C#
+C# equivalents of the Python demo programs in this project to demonstrate multi-threaded batch inserts to SingleStore from .NET / C#
 Uses MySQL .Net connector, and includes:
  - S2dbPersonInsert - inserts from csv files with separate thread per csv file
  - S2dbPersonQuery - multi-threaded query benchmark program
