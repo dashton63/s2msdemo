@@ -60,7 +60,7 @@ Python demonstration scripts
 
 Including python script for generating randonized person test data-sets of varying sizes and number of data-files
 
-## CSharp Demo Programs
+## C# Demo Programs
 
 > ~/csharp
 
