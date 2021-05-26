@@ -46,3 +46,6 @@ files/person_44.csv
 files/person_45.csv
 files/person_46.csv
 files/person_47.csv
+
+java/java_run/S2dbPersonInsert.jar
+java/java_run/S2dbPersonQuery.jar

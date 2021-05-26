@@ -72,3 +72,13 @@ Uses MySQL .Net connector, and includes:
  Note that the C# demo programs don't take command-line arguments at this time
  - so you'll need to modify and recompile to use different parameters for your specific test
  - modifying to use externally provided parameters is on the to-do list 
+
+## Java Demo Programs
+
+> ~/java
+
+Java equivalents of the Python demo programs.  
+This includes the project java source under the com.singlestore.s2dbdemo directory.
+These use the mariadb JDBC drivers.
+The java_run directory has the shell scripts to run from command line.
+Properties files have the benchmark run parameters for each test program (Insert & Query).
