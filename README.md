@@ -82,4 +82,3 @@ This includes the project java source under the com.singlestore.s2dbdemo directo
 These use the mariadb JDBC drivers.
 The java_run directory has the shell scripts to run from command line.
 Properties files have the benchmark run parameters for each test program (Insert & Query).
-
